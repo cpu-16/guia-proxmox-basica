@@ -14,6 +14,6 @@ Luego, abre el navegador y accede con:
 
 ```text
 https://IP_DEL_PROXMOX:8006
+```
 
 ![Pantalla de login de Proxmox](images/paso1.png)
-
