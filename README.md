@@ -10,7 +10,7 @@ El administrador te entregará:
 - **IP del servidor Proxmox** (ej.: `172.25.205.161`)
 - **Puerto de administración** (**por defecto `8006`**)
 
-Luego, abre el navegador y accede con:
+Luego, abre el navegador y accede con tus credenciales que te asignaron:
 
 ```text
 https://IP_DEL_PROXMOX:8006
@@ -89,3 +89,85 @@ En las siguientes secciones de la guía se explicará paso a paso cómo:
 1. Crear la **primera VM** con **Create VM**.  
 2. Crear el **primer contenedor LXC** con **Create CT**.  
 3. Más adelante, ver una alternativa usando **scripts desde la pestaña Shell** del nodo.
+
+## 5. Crear la primera máquina virtual (VM) con el asistente
+
+En este paso vamos a crear una VM de prueba usando el botón **Create VM**.
+
+![Asistente de creación de VM en Proxmox](images/paso5.png)
+
+El asistente tiene varias pestañas. Para una configuración básica de laboratorio puedes usar estos valores:
+
+### 5.1. General
+
+- **Node:** se selecciona automáticamente (ej. `ciber`).
+- **VM ID:** Proxmox propone uno libre; puedes dejarlo por defecto.
+- **Name:** escribe un nombre descriptivo, por ejemplo `prueba`, `kali`, `win10-lab`.
+
+Pulsa **Next**.
+
+### 5.2. OS (sistema operativo)
+
+- Marca **Use CD/DVD disc image file (iso)**.
+- **Storage:** el almacenamiento donde subiste las ISOs (ej. `local`).
+- **ISO image:** selecciona la ISO que cargaste en el *Paso 3* (ej. `kali-linux-2025.3-installer-amd64.iso`).
+- **Guest OS:** selecciona el tipo (`Linux` / `Windows`) y versión aproximada.
+
+Pulsa **Next**.
+
+### 5.3. System
+
+- Deja las opciones por defecto para una instalación básica.
+- **Qemu Agent:** recomendado **marcarlo** para poder usar las funciones avanzadas de Proxmox cuando instales el agente dentro de la VM.
+
+Pulsa **Next**.
+
+### 5.4. Disks
+
+- **Bus/Device:** `SCSI` (por defecto está bien).
+- **Storage:** `local` (o el almacenamiento que uses).
+- **Disk size (GiB):** por ejemplo `32` GB para un sistema de pruebas.
+- **Format:** `QEMU image format (qcow2)` suele ser una buena opción para laboratorios.
+
+Pulsa **Next**.
+
+### 5.5. CPU
+
+- **Sockets:** `1`.
+- **Cores:** por ejemplo `2` (o más si tu servidor lo permite).
+- **Type:** puedes usar **`host`** para aprovechar al máximo la CPU real, pero puedes elegir kvm64.
+
+Pulsa **Next**.
+
+### 5.6. Memory
+
+- **Memory (MiB):** elige la RAM para la VM, por ejemplo `4096` (4 GB) para un servidor de pruebas. Ajusta según los recursos del host y el sistema invitado.
+
+Pulsa **Next**.
+
+### 5.7. Network
+
+- **Bridge:** normalmente `vmbr0` (la interfaz de puente principal del host).
+- **Model:** `VirtIO (paravirtualized)` para mejor rendimiento.
+- **Firewall:** puedes dejarlo marcado si planeas usar las reglas de firewall de Proxmox más adelante.
+
+Pulsa **Next**.
+
+### 5.8. Confirm
+
+En la pestaña **Confirm** verás un resumen de todos los parámetros:
+
+- Nombre, VMID, ISO seleccionada.
+- CPU, RAM y disco asignados.
+- Configuración de red.
+
+Opcionalmente puedes marcar **Start after created** para encender la VM al terminar.
+
+Haz clic en **Finish** para que Proxmox cree la VM.
+
+---
+
+Con esto ya tienes una **VM básica creada y lista para instalar el sistema operativo** desde la ISO, te tocará configurar tu VM, solo seguir el wizard de instalación.
+
+![Finalización de Kali linux en Proxmox](images/paso6.png)
+
