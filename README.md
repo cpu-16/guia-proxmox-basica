@@ -2,21 +2,18 @@
 
 ## 1. Acceso a la interfaz web de Proxmox VE
 
-Para administrar Proxmox VE usaremos su **interfaz web**, accesible desde un navegador moderno (Chrome, Edge, Firefox, etc.). :contentReference[oaicite:0]{index=0}  
+Usaremos la **interfaz web** de Proxmox VE desde un navegador (Chrome, Edge, Firefox). 
 
-### 1.1. IP, puerto y Tailscale
+### 1.1. IP y puerto de Proxmox
 
-Antes de empezar, el administrador del laboratorio te entregará:
+El administrador te entregará:
+- **IP del servidor Proxmox** (ej.: `172.25.205.161`)
+- **Puerto de administración** (**por defecto `8006`**)
 
-- **IP del servidor Proxmox** (ejemplo: `172.25.205.161`)
-- **Puerto de administración** (por defecto: `8006`) :contentReference[oaicite:1]{index=1}  
-- Acceso a la red mediante **Tailscale**, para que puedas llegar a esa IP aunque el servidor esté en otra red.
+Luego, abre el navegador y accede con:
 
-Una vez conectado a Tailscale en tu equipo:
+```text
+https://IP_DEL_PROXMOX:8006
 
-1. Abre el navegador.
-2. Escribe en la barra de direcciones:
-
-   ```text
-   https://IP_DEL_PROXMOX:8006
+![Pantalla de login de Proxmox](images/paso1.png)
 
